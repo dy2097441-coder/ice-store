@@ -1,40 +1,60 @@
 <html>
 <head>
-<title>Ice Store</title>
+<title>Ice Store - apps for Iceberg OS</title>
 </head>
 <body>
 
 <center>
-<h1>Ice Store</h1>
-<p>Apps for Iceberg OS</p>
+<img src="banner.png" alt="Ice Store">
+<h2>Free apps for Iceberg OS</h2>
+<p>Click Download, then open the app from Files.</p>
 </center>
 
 <hr>
 
 <h2>Apps</h2>
 
-<table border="1">
-<tr>
-<td><b>Name</b></td>
-<td><b>What it does</b></td>
-<td><b>Download</b></td>
-</tr>
-<tr>
-<td>Test</td>
-<td>A tiny app that opens a window and says Hi.</td>
-<td><a href="test.app">test.app</a></td>
-</tr>
-</table>
+<h3>Colors</h3>
+<p>Three coloured boxes - red, green and blue. A small example of drawing with rect and text.</p>
+<p>Size: 155 bytes<br>
+<a href="colors.app">Download colors.app</a></p>
+
+<hr>
+
+<h3>Test</h3>
+<p>The smallest possible app. It opens a window that says Hi.</p>
+<p>Size: 52 bytes<br>
+<a href="test.app">Download test.app</a></p>
+
+<hr>
 
 <h2>How to install</h2>
 <ol>
-<li>Click the download link next to an app.</li>
-<li>It is saved in Home/Downloads.</li>
-<li>Open it from Files.</li>
+<li>Click Download under an app. A message says it was saved in Home/Downloads.</li>
+<li>Open Files and go to Home, then Downloads.</li>
+<li>Double-click the .app file to run it. Press Esc to close it.</li>
 </ol>
 
+<h2>Make your own</h2>
+<p>An app is a plain text file ending in .app. The first line must be ICEBERG-APP 1. Example:</p>
+<pre>
+ICEBERG-APP 1
+title Hello
+size 260 110
+text 20 30 Hi there
+rect 20 60 80 20 40 80 200
+</pre>
+<ul>
+<li>title - the window title</li>
+<li>size - window width and height</li>
+<li>text x y words - writes words at that spot</li>
+<li>rect x y w h r g b - a filled box with a colour (0 to 255 each)</li>
+</ul>
+
 <hr>
-<p>These apps are made for Iceberg OS only.</p>
+<center>
+<p>Ice Store - made for Iceberg OS only</p>
+</center>
 
 </body>
 </html>
