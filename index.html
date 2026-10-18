@@ -14,6 +14,13 @@
 
 <h2>Apps</h2>
 
+<h3>Calculator</h3>
+<p>A calculator with clickable buttons and keyboard support: + - * / % and Del. Whole numbers only. Type with the keyboard too: digits, + - * / %, Enter for equals, c to clear.</p>
+<p>Size: 1779 bytes<br>
+<a href="calculator.app">Download calculator.app</a></p>
+
+<hr>
+
 <h3>Colors</h3>
 <p>Three coloured boxes - red, green and blue. A small example of drawing with rect and text.</p>
 <p>Size: 155 bytes<br>
@@ -36,20 +43,30 @@
 </ol>
 
 <h2>Make your own</h2>
-<p>An app is a plain text file ending in .app. The first line must be ICEBERG-APP 1. Example:</p>
+<p>An app is a plain text file ending in .app. The first line must be ICEBERG-APP 2. This one counts button clicks:</p>
 <pre>
-ICEBERG-APP 1
-title Hello
-size 260 110
-text 20 30 Hi there
-rect 20 60 80 20 40 80 200
+ICEBERG-APP 2
+title Counter
+size 200 130
+var n 0
+text 20 20 Count: {n}
+button 20 50 80 30 add Add 1
+on add
+set n n + 1
+end
 </pre>
 <ul>
 <li>title - the window title</li>
-<li>size - window width and height</li>
-<li>text x y words - writes words at that spot</li>
-<li>rect x y w h r g b - a filled box with a colour (0 to 255 each)</li>
+<li>size - total window width and height</li>
+<li>var name number - a whole-number variable</li>
+<li>text x y words - writes words; {n} shows a value</li>
+<li>rect x y w h r g b - a filled box (colours 0 to 255)</li>
+<li>display x y w h expression - a number box</li>
+<li>button x y w h handler label - a button; use handler:5 to pass the number 5 as arg</li>
+<li>key c handler - a keyboard key (or enter, backspace) runs a handler</li>
+<li>on name ... end - a handler. Inside: set name expression, if expression / else / endif, call name</li>
 </ul>
+<p>Expressions use whole numbers, variables, ( ) + - * / % and comparisons like == != &lt; &gt; &amp;&amp; ||. A mistake shows a red message at the bottom of the app window.</p>
 
 <hr>
 <center>
