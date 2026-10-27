@@ -1,57 +1,77 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101114"><title>Ice Store — Discover apps</title>
-<style>
-:root{--bg:#101114;--surface:#191a1f;--surface2:#222329;--line:#303137;--text:#f1f0f6;--muted:#a6a6b0;--green:#c3f56b;--mint:#b9f5d0;--purple:#cbb8ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button,a{cursor:pointer}a{color:inherit;text-decoration:none}.app{display:grid;grid-template-columns:235px minmax(0,1fr);min-height:100vh}
-.sidebar{height:100vh;position:sticky;top:0;border-right:1px solid var(--line);padding:25px 14px;background:#111215}.brand{display:flex;align-items:center;gap:12px;padding:0 13px 28px;font-size:21px;font-weight:800;letter-spacing:-.7px;min-height:64px}.brandmark{width:39px;height:39px;background:var(--green);color:#151710;border-radius:13px;display:grid;place-items:center;font-size:23px;font-weight:900}.brand-banner{width:150px;height:50px;object-fit:contain;object-position:left center;flex-shrink:0}.brand-sub{display:none}.mobile-banner{width:112px;height:38px;object-fit:contain;object-position:left center}.brand span small{display:block;font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:-3px}.side-label{font-size:10px;letter-spacing:1.5px;color:#7e7e88;font-weight:800;padding:16px 14px 9px}.navitem{display:flex;align-items:center;gap:14px;padding:12px 14px;margin:3px 0;border-radius:12px;color:#c0c0c9;font-weight:650}.navitem .ico{font-size:18px;width:22px;text-align:center}.navitem.active{background:#d6f9a3;color:#1b2114}.navitem:hover:not(.active){background:#24252b}.side-bottom{position:absolute;bottom:22px;left:14px;right:14px;background:#1b1c21;border:1px solid #303137;border-radius:15px;padding:15px}.side-bottom strong{font-size:12px}.side-bottom p{font-size:11px;color:var(--muted);margin:6px 0 0}
-main{min-width:0}.top{height:82px;display:flex;align-items:center;gap:18px;padding:0 clamp(20px,4vw,55px);position:sticky;top:0;z-index:8;background:#101114eF;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff08}.mobile-brand{display:none}.search{max-width:700px;flex:1;display:flex;align-items:center;gap:12px;padding:0 18px;height:48px;border-radius:16px;background:#222329;border:1px solid transparent;color:var(--muted)}.search:focus-within{border-color:#d6f9a377;background:#27282f}.search input{width:100%;border:0;outline:0;background:transparent;color:white;font-size:14px}.search input::placeholder{color:#9999a3}.top-action{width:43px;height:43px;border-radius:50%;background:#25262b;border:1px solid #37383f;color:white;font-size:17px}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,#d1baff,#baf6d2);color:#24242a;display:grid;place-items:center;font-weight:900}
-.content{max-width:1450px;margin:auto;padding:30px clamp(20px,4vw,55px) 70px}.sectiontabs{display:flex;gap:25px;border-bottom:1px solid var(--line);margin-bottom:27px;overflow:auto}.tab{padding:0 0 15px;color:#aaaab4;white-space:nowrap;font-weight:750;border:0;border-bottom:3px solid transparent;background:none}.tab.active{color:var(--green);border-color:var(--green)}
-.hero{min-height:290px;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(110deg,#d7f6a3 0%,#b9edce 48%,#a6d6e0 100%);color:#172018;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;padding:clamp(25px,4vw,52px);margin-bottom:39px}.hero:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:#ffffff49;right:12%;top:-130px}.hero:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;border:1px solid #1720182c;right:9%;bottom:-160px;box-shadow:0 0 0 25px #17201808,0 0 0 50px #17201808}.hero-copy{position:relative;z-index:1}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:900;opacity:.7}.hero h1{font-size:clamp(34px,4.2vw,57px);line-height:.98;letter-spacing:-2.8px;max-width:500px;margin:14px 0}.hero p{max-width:400px;color:#344334;margin:0 0 22px;font-size:14px}.hero-button{border:0;border-radius:999px;padding:12px 18px;background:#172018;color:white;font-weight:800}.hero-art{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:200px}.big-icon{width:145px;height:145px;border-radius:37px;background:#172018;box-shadow:18px 18px 0 #17201822;display:grid;place-items:center;color:var(--green);font-size:68px;transform:rotate(8deg)}.mini-icon{position:absolute;width:64px;height:64px;border:5px solid #d7f6a3;border-radius:20px;background:#292b30;color:#d6f9a3;display:grid;place-items:center;font-size:26px;box-shadow:0 8px 30px #23332444}.mini1{top:8px;right:4%}.mini2{bottom:6px;left:8%;background:#e2cfff;color:#392c55;border-color:#b7e8d0}
-.heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:0 0 18px}.heading h2{font-size:23px;letter-spacing:-.7px;margin:0}.heading p{color:var(--muted);font-size:12px;margin:4px 0 0}.seeall{border:0;background:none;color:var(--green);font-weight:800}.apprail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:40px}.tile{padding:16px;border-radius:17px;background:var(--surface);border:1px solid #ffffff08;min-width:0;transition:.2s}.tile:hover{background:#202127;border-color:#3d4532;transform:translateY(-3px)}.tile-top{display:flex;align-items:center;gap:12px}.appicon{width:59px;height:59px;border-radius:17px;display:grid;place-items:center;font-size:28px;flex-shrink:0;background:#d8f7a8;color:#1e2619}.appicon.purple{background:#d7c8ff;color:#392b5a}.appicon.blue{background:#b8e8f2;color:#1b3840}.appicon.orange{background:#ffd4a8;color:#4a2d17}.tile-name{font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.developer{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rating{font-size:11px;color:#c7c7d0;margin-top:14px;display:flex;align-items:center;gap:7px}.star{color:var(--green);font-size:13px}.separator{color:#666770}.tile-desc{font-size:11px;color:#a8a8b2;min-height:34px;margin:10px 0 15px}.tile-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}.size{font-size:10px;color:#8c8c96}.install{border:1px solid #9bc84e;border-radius:999px;background:transparent;color:var(--green);padding:7px 13px;font-size:11px;font-weight:850}.install:hover,.install.installed{background:var(--green);color:#171b13}
-.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:42px}.category{display:flex;align-items:center;gap:13px;border:1px solid #303137;background:#191a1f;border-radius:15px;padding:16px;text-align:left;color:white}.category:hover{border-color:#b7ed75;background:#20231c}.category-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#d8f7a8;color:#1e2619;font-size:21px}.category strong{font-size:12px}.category small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
-.allapps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:45px}.listrow{display:flex;align-items:center;gap:14px;padding:13px;border-radius:14px;background:#191a1f;border:1px solid #ffffff08}.listrow:hover{background:#202127}.listrow .appicon{width:52px;height:52px;border-radius:15px}.rowinfo{flex:1;min-width:0}.rowinfo strong{font-size:13px}.rowinfo p{margin:3px 0;color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rowmeta{font-size:10px;color:#9a9aa5}.listrow .install{margin-left:auto}
-.footer{border-top:1px solid var(--line);padding:24px 0 0;color:#858590;font-size:11px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,30px);opacity:0;transition:.25s;background:#d8f7a8;color:#171b13;padding:13px 19px;border-radius:12px;font-weight:800;box-shadow:0 10px 45px #0008;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}.empty{display:none;color:var(--muted);text-align:center;padding:40px;border:1px dashed #3a3b42;border-radius:16px}.mobilebar{display:none}
-@media(max-width:1100px){.app{grid-template-columns:205px minmax(0,1fr)}.apprail{grid-template-columns:repeat(2,minmax(0,1fr))}.category-grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr .55fr}.big-icon{width:115px;height:115px;font-size:54px}}
-@media(max-width:700px){.app{display:block}.sidebar{display:none}.top{height:67px;padding:0 16px;gap:10px}.mobile-brand{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:850;white-space:nowrap}.mobile-banner{width:105px;height:35px}.mobile-brand .brandmark{width:31px;height:31px;border-radius:10px;font-size:18px}.top .search{height:42px;padding:0 12px}.top-action,.avatar{display:none}.content{padding:20px 16px 90px}.sectiontabs{gap:22px;margin-bottom:19px}.hero{padding:25px;grid-template-columns:1fr;min-height:300px;margin-bottom:31px}.hero h1{font-size:40px}.hero-art{position:absolute;right:10px;bottom:5px;opacity:.38}.big-icon{width:130px;height:130px}.mini-icon{display:none}.hero-copy{z-index:2}.apprail{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{padding:12px}.appicon{width:48px;height:48px;border-radius:14px;font-size:23px}.tile-top{gap:9px}.tile-name{font-size:12px}.tile-desc{font-size:10px}.category-grid{gap:9px}.category{padding:11px;gap:9px}.category-icon{width:36px;height:36px}.allapps{grid-template-columns:1fr}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;background:#17181df5;border-top:1px solid #303137;backdrop-filter:blur(18px);z-index:10;justify-content:space-around;padding:9px 8px calc(9px + env(safe-area-inset-bottom))}.mobilebar a{display:flex;flex-direction:column;align-items:center;gap:4px;color:#9e9ea8;font-size:10px;font-weight:700;min-width:55px}.mobilebar a span{font-size:19px}.mobilebar a.active{color:var(--green)}.heading h2{font-size:20px}}
-@media(max-width:380px){.apprail{grid-template-columns:1fr}.hero h1{font-size:35px}.mobile-brand{font-size:0}.mobile-brand .brandmark{font-size:18px}.category-grid{grid-template-columns:1fr 1fr}}
-</style></head>
-<body><div class="app">
-<aside class="sidebar"><a class="brand" href="#"><img class="brand-banner" src="banner.png" alt="Ice Store"><span class="brand-sub">APP MARKETPLACE</span></a>
-<div class="side-label">DISCOVER</div><a class="navitem active" href="#home"><span class="ico">⌂</span>Home</a><a class="navitem" href="#top-apps"><span class="ico">↗</span>Top charts</a><a class="navitem" href="#categories"><span class="ico">▦</span>Categories</a><a class="navitem" href="#all-apps"><span class="ico">◈</span>All apps</a>
-<div class="side-label">YOUR LIBRARY</div><a class="navitem" href="#installed" id="libraryNav"><span class="ico">▣</span>My downloads <span id="dlCount" style="margin-left:auto;font-size:11px">0</span></a>
-<div class="side-bottom"><strong>✦ Made for Iceberg OS</strong><p>A small app universe for curious minds. Discover something useful today.</p></div></aside>
-<main><header class="top"><a class="mobile-brand" href="#"><img class="mobile-banner" src="banner.png" alt="Ice Store"></a><label class="search"><span style="font-size:20px">⌕</span><input id="search" placeholder="Search apps, games and more" aria-label="Search apps"><span id="clear" style="cursor:pointer;display:none">×</span></label><button class="top-action" title="Help" id="help">?</button><div class="avatar">i</div></header>
-<div class="content" id="home"><div class="sectiontabs"><button class="tab active" data-tab="for-you">For you</button><button class="tab" data-tab="apps">Apps</button><button class="tab" data-tab="games">Games</button><button class="tab" data-tab="new">New & updated</button></div>
-<section class="hero"><div class="hero-copy"><div class="eyebrow">✦ THE ICEBERG OS APP MARKETPLACE</div><h1>Good apps.<br>Great discoveries.</h1><p>Find the little tools that make your desktop feel like yours. Explore essentials, creative tools, and new favourites.</p><button class="hero-button" onclick="document.querySelector('#top-apps').scrollIntoView({behavior:'smooth'})">Explore popular apps&nbsp; ↗</button></div><div class="hero-art"><div class="big-icon">✳</div><div class="mini-icon mini1">＋</div><div class="mini-icon mini2">◉</div></div></section>
-<section id="top-apps"><div class="heading"><div><h2>Popular apps</h2><p>Little downloads. Big everyday usefulness.</p></div><button class="seeall" onclick="document.querySelector('#all-apps').scrollIntoView({behavior:'smooth'})">See all&nbsp; ›</button></div>
-<div class="apprail" id="popular">
-<article class="tile searchable" data-name="calculator math arithmetic numbers utility" data-category="utility" data-title="Calculator" data-desc="A handy calculator with clickable buttons and keyboard support for +, −, ×, ÷ and %." data-file="calculator.app"><div class="tile-top"><div class="appicon">＋</div><div><div class="tile-name">Calculator</div><div class="developer">Iceberg Tools</div></div></div><div class="rating"><span class="star">★</span> 4.8 <span class="separator">·</span> Utility</div><p class="tile-desc">Everyday maths, made simple.</p><div class="tile-foot"><span class="size">1.7 KB</span><button class="install" data-file="calculator.app">Install</button></div></article>
-<article class="tile searchable" data-name="colors colour color creative design visual" data-category="creative" data-title="Colors" data-desc="Three vivid color boxes in a tiny example of drawing rectangles and text." data-file="colors.app"><div class="tile-top"><div class="appicon purple">◉</div><div><div class="tile-name">Colors</div><div class="developer">Iceberg Studio</div></div></div><div class="rating"><span class="star">★</span> 4.7 <span class="separator">·</span> Creative</div><p class="tile-desc">A splash of color for your screen.</p><div class="tile-foot"><span class="size">155 B</span><button class="install" data-file="colors.app">Install</button></div></article>
-<article class="tile searchable" data-name="test starter demo hello beginner" data-category="starter" data-title="Test" data-desc="The smallest possible Iceberg app. Launch it and a window says Hi." data-file="test.app"><div class="tile-top"><div class="appicon blue">✦</div><div><div class="tile-name">Test</div><div class="developer">Iceberg Labs</div></div></div><div class="rating"><span class="star">★</span> 4.5 <span class="separator">·</span> Starter</div><p class="tile-desc">A tiny first step into Iceberg apps.</p><div class="tile-foot"><span class="size">52 B</span><button class="install" data-file="test.app">Install</button></div></article>
-<article class="tile searchable" data-name="ice store essentials featured collection" data-category="utility" data-title="Ice Store Essentials" data-desc="A curated collection of lightweight tools for your Iceberg OS desktop." data-file=""><div class="tile-top"><div class="appicon orange">✧</div><div><div class="tile-name">Essentials</div><div class="developer">Curated collection</div></div></div><div class="rating"><span class="star">★</span> Featured <span class="separator">·</span> Collection</div><p class="tile-desc">A collection of useful little apps.</p><div class="tile-foot"><span class="size">Collection</span><button class="install details" data-title="Ice Store Essentials" data-desc="A curated collection of lightweight tools for your Iceberg OS desktop." data-file="">Details</button></div></article>
-</div></section>
-<section id="categories"><div class="heading"><div><h2>Browse by category</h2><p>There's a little something for every kind of day.</p></div></div><div class="category-grid"><button class="category" data-category="utility"><span class="category-icon">＋</span><span><strong>Utilities</strong><small>Tools for everyday tasks</small></span></button><button class="category" data-category="creative"><span class="category-icon" style="background:#d7c8ff">◉</span><span><strong>Creative</strong><small>Make something cool</small></span></button><button class="category" data-category="starter"><span class="category-icon" style="background:#b8e8f2">✦</span><span><strong>Starter apps</strong><small>Small apps, big ideas</small></span></button><button class="category" data-category="all"><span class="category-icon" style="background:#ffd4a8">▦</span><span><strong>Everything</strong><small>Explore all apps</small></span></button></div></section>
-<section id="all-apps"><div class="heading"><div><h2>Explore all apps</h2><p id="resultText">Browse the full collection available right now.</p></div><button class="seeall" id="reset">Reset filters ↺</button></div><div class="allapps" id="allList">
-<div class="listrow searchable" data-name="calculator math arithmetic numbers utility" data-category="utility" data-title="Calculator" data-desc="A handy calculator with clickable buttons and keyboard support for +, −, ×, ÷ and %." data-file="calculator.app"><div class="appicon">＋</div><div class="rowinfo"><strong>Calculator</strong><p>Everyday maths, made simple.</p><div class="rowmeta">★ 4.8 · 1.7 KB · Utility</div></div><button class="install" data-file="calculator.app">Install</button></div>
-<div class="listrow searchable" data-name="colors colour color creative design visual" data-category="creative" data-title="Colors" data-desc="Three vivid color boxes in a tiny example of drawing rectangles and text." data-file="colors.app"><div class="appicon purple">◉</div><div class="rowinfo"><strong>Colors</strong><p>A splash of color for your screen.</p><div class="rowmeta">★ 4.7 · 155 B · Creative</div></div><button class="install" data-file="colors.app">Install</button></div>
-<div class="listrow searchable" data-name="test starter demo hello beginner" data-category="starter" data-title="Test" data-desc="The smallest possible Iceberg app. Launch it and a window says Hi." data-file="test.app"><div class="appicon blue">✦</div><div class="rowinfo"><strong>Test</strong><p>A tiny first step into Iceberg apps.</p><div class="rowmeta">★ 4.5 · 52 B · Starter</div></div><button class="install" data-file="test.app">Install</button></div></div><div class="empty" id="empty">No apps found. Try another search or category.</div></section>
-<section id="installed" style="display:none"><div class="heading"><div><h2>My downloads</h2><p>Your downloaded apps, all in one place.</p></div></div><div id="installedList" class="allapps"></div></section>
-<footer class="footer"><span><strong style="color:#e7e7ed">✳ Ice Store</strong> &nbsp;·&nbsp; An app marketplace for Iceberg OS.</span><span>Small apps, open possibilities. ♥</span></footer>
-</div></main></div>
-<nav class="mobilebar"><a class="active" href="#home"><span>⌂</span>Home</a><a href="#top-apps"><span>↗</span>Popular</a><a href="#categories"><span>▦</span>Categories</a><a href="#installed" id="mobileLibrary"><span>▣</span>Library</a></nav><div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-const search=document.querySelector('#search'), clear=document.querySelector('#clear'), searchable=[...document.querySelectorAll('.searchable')], empty=document.querySelector('#empty'), resultText=document.querySelector('#resultText');let category='all',installed=JSON.parse(localStorage.getItem('ice-store-installed')||'[]'),timer;
-function toast(msg){let t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>t.classList.remove('show'),2600)}
-function render(){let q=search.value.toLowerCase().trim(),visible=0;searchable.forEach(el=>{let ok=(el.dataset.name||'').includes(q)&&(category==='all'||el.dataset.category===category);el.style.display=ok?'':'none';if(ok)visible++});empty.style.display=visible?'none':'block';resultText.textContent=`${visible} app${visible===1?'':'s'} found in this collection.`;clear.style.display=q?'':'none'}
-function updateInstalled(){document.querySelector('#dlCount').textContent=installed.length;document.querySelectorAll('.install[data-file]').forEach(b=>{if(!b.dataset.file)return;let yes=installed.includes(b.dataset.file);b.classList.toggle('installed',yes);b.textContent=yes?'✓ Installed':'Install'});let list=document.querySelector('#installedList');list.innerHTML='';installed.forEach(file=>{let src=document.querySelector(`.listrow[data-file="${file}"]`);if(src){let copy=src.cloneNode(true);copy.querySelector('button').textContent='Download again';list.appendChild(copy)}});if(!installed.length)list.innerHTML='<p style="color:var(--muted)">No downloads yet. Browse apps and tap Install to start your library.</p>'}
-search.addEventListener('input',render);clear.addEventListener('click',()=>{search.value='';render()});
-document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));category=b.dataset.tab==='apps'?'all':b.dataset.tab==='games'?'__games':b.dataset.tab==='new'?'starter':'all';render();if(category==='__games'){empty.textContent='No games are listed yet — check back as the store grows.';empty.style.display='block'}else empty.textContent='No apps found. Try another search or category.'}));
-document.querySelectorAll('.category').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='for-you'));render();document.querySelector('#all-apps').scrollIntoView({behavior:'smooth'})}));
-document.querySelector('#reset').addEventListener('click',()=>{category='all';search.value='';render()});
-document.addEventListener('click',e=>{let b=e.target.closest('button.install');if(!b)return;let file=b.dataset.file;if(!file){toast('Collection details — more apps coming soon.');return}installed=[...new Set([...installed,file])];localStorage.setItem('ice-store-installed',JSON.stringify(installed));updateInstalled();let link=document.createElement('a');link.href=file;link.download=file;link.click();toast('Download started! Check your Downloads folder.');});
-function showLibrary(){document.querySelector('#installed').style.display='block';document.querySelector('#installed').scrollIntoView({behavior:'smooth'});updateInstalled()}
-document.querySelector('#libraryNav').addEventListener('click',showLibrary);document.querySelector('#mobileLibrary').addEventListener('click',showLibrary);
-document.querySelector('#help').addEventListener('click',()=>toast('Choose an app, tap Install, then open it from Downloads.'));
-document.querySelectorAll('.navitem').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.navitem').forEach(x=>x.classList.toggle('active',x===a))}));
-updateInstalled();render();
-</script></body></html>
+<html>
+<head>
+<title>Ice Store - apps for Iceberg OS</title>
+</head>
+<body>
+
+<center>
+<img src="banner.png" alt="Ice Store">
+<h2>Free apps for Iceberg OS</h2>
+<p>Click Download, then open the app from Files.</p>
+</center>
+
+<hr>
+
+<h2>Apps</h2>
+
+<h3>Calculator</h3>
+<p>A calculator with clickable buttons and keyboard support: + - * / % and Del. Whole numbers only. Type with the keyboard too: digits, + - * / %, Enter for equals, c to clear.</p>
+<p>Size: 1779 bytes<br>
+<a href="calculator.app">Download calculator.app</a></p>
+
+<hr>
+
+<h3>Colors</h3>
+<p>Three coloured boxes - red, green and blue. A small example of drawing with rect and text.</p>
+<p>Size: 155 bytes<br>
+<a href="colors.app">Download colors.app</a></p>
+
+<hr>
+
+<h3>Test</h3>
+<p>The smallest possible app. It opens a window that says Hi.</p>
+<p>Size: 52 bytes<br>
+<a href="test.app">Download test.app</a></p>
+
+<hr>
+
+<h2>How to install</h2>
+<ol>
+<li>Click Download under an app. A message says it was saved in Home/Downloads.</li>
+<li>Open Files and go to Home, then Downloads.</li>
+<li>Double-click the .app file to run it. Press Esc to close it.</li>
+</ol>
+
+<h2>Make your own</h2>
+<p>An app is a plain text file ending in .app. The first line must be ICEBERG-APP 2. This one counts button clicks:</p>
+<pre>
+ICEBERG-APP 2
+title Counter
+size 200 130
+var n 0
+text 20 20 Count: {n}
+button 20 50 80 30 add Add 1
+on add
+set n n + 1
+end
+</pre>
+<ul>
+<li>title - the window title</li>
+<li>size - total window width and height</li>
+<li>var name number - a whole-number variable</li>
+<li>text x y words - writes words; {n} shows a value</li>
+<li>rect x y w h r g b - a filled box (colours 0 to 255)</li>
+<li>display x y w h expression - a number box</li>
+<li>button x y w h handler label - a button; use handler:5 to pass the number 5 as arg</li>
+<li>key c handler - a keyboard key (or enter, backspace) runs a handler</li>
+<li>on name ... end - a handler. Inside: set name expression, if expression / else / endif, call name</li>
+</ul>
+<p>Expressions use whole numbers, variables, ( ) + - * / % and comparisons like == != &lt; &gt; &amp;&amp; ||. A mistake shows a red message at the bottom of the app window.</p>
+
+<hr>
+<center>
+<p>Ice Store - made for Iceberg OS only</p>
+</center>
+
+</body>
+</html>
